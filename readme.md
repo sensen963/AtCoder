@@ -1,2 +1,2 @@
 # 概要
-時々AtCorderで遊ぶからgithubの練習も兼ねてコードを置いておく
+時々AtCorderで遊ぶためgithubの練習も兼ねてコードを置いておく
