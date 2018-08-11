@@ -31,3 +31,20 @@ std::accumulate(vect.begin(), vect.end(), 1, Multiply())
 int min = *std::min_element(vec.begin(), vec.end());
 int max = *std::max_element(vec.begin(), vec.end());
 ```
+
+## map
+
+- associative containers that store elements formed by a combination of a key value and a mapped value,
+
+- key and value use pair type
+- so the element of map refers like below 
+
+```
+std::map<int, int> mp;
+
+for (auto iter = mp.begin(); iter != mp.end(); iter++){
+  cout << "key:" << iter->first << endl;
+  cout << "value:" << iter->second << endl;
+}
+
+```
