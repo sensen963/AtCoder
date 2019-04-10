@@ -62,6 +62,7 @@ for (auto iter = mp.begin(); iter != mp.end(); iter++){
 - [nCr mod m の求め方](https://ikatakos.com/pot/programming_algorithm/number_theory/mod_combination)
 
 ```
+
 ll MOD = pow(10, 9) + 7
 
 ll powmod(ll a, ll p, ll MOD) {
@@ -94,4 +95,28 @@ ll combmod(ll n, ll r, ll MOD){
 
   return comb;
 }
+
+```
+
+## sort
+
+- when sorting vector type, (ascending order)
+
+```
+
+
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+std::sort(v.begin(), v.end())
+
+```
+
+- if descending order,
+
+```
+
+std::sort(v.begin(), v.end(), std::greater<long long>())
+
 ```
