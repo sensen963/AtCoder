@@ -120,3 +120,13 @@ std::sort(v.begin(), v.end())
 std::sort(v.begin(), v.end(), std::greater<long long>())
 
 ```
+- when argsort or as a key
+
+```
+
+vector<pair<ll, ll>> A(N);
+REP(i, N) cin >> A[i].first >> A[i].second;
+
+sort(A.begin(), A.end(), [](pair<ll, ll> x, pair<ll, ll> y) { return x.first < y.first;});
+
+```
