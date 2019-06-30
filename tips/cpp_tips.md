@@ -75,6 +75,8 @@ ll powmod(ll a, ll p, ll MOD) {
 }
 
 ll combmod(ll n, ll r, ll MOD){
+  if(n < r) return 0LL;
+  if (n < 0 || r < 0) return 0LL;
   vector<ll> ff(n+1), vff(n+1);
   // 1! ~ n!
   ff[0] = 1;
