@@ -123,6 +123,7 @@ std::sort(v.begin(), v.end(), std::greater<long long>())
 
 ```
 - when argsort or as a key
+  - using lambda
 
 ```
 
@@ -130,5 +131,21 @@ vector<pair<ll, ll>> A(N);
 REP(i, N) cin >> A[i].first >> A[i].second;
 
 sort(A.begin(), A.end(), [](pair<ll, ll> x, pair<ll, ll> y) { return x.first < y.first;});
+
+```
+
+- can use struct type
+
+```
+struct hoge{
+  int x;
+};
+
+vector<hoge> A(N);
+REP(i, N) cin >> A[i].x;
+
+sort(A.begin(), A.end(), [](hoge& x, hoge& y) {
+  return x.first < y.first;
+  });
 
 ```
