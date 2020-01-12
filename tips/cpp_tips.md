@@ -100,6 +100,26 @@ ll combmod(ll n, ll r, ll MOD){
 
 ```
 
+# inverse of div (MOD)
+
+
+```
+
+# a's inverse (MOD m)
+long long modinv(long long a, long long m) {
+    long long b = m, u = 1, v = 0;
+    while (b) {
+        long long t = a / b;
+        a -= t * b; swap(a, b);
+        u -= t * v; swap(u, v);
+    }
+    u %= m; 
+    if (u < 0) u += m;
+    return u;
+}
+
+```
+
 ## sort
 
 - when sorting vector type, (ascending order)
