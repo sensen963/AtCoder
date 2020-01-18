@@ -12,7 +12,7 @@
                 "-stdlib=libc++",
                 "${file}",
                 "-o",
-                "${fileBasenameNoExtension}.out",
+                "${fileDirname}/${fileBasenameNoExtension}.out",
                 "--debug"
             ],
             "group": {
