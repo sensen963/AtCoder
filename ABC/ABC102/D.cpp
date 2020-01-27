@@ -14,6 +14,7 @@
 #include <map>
 #include <set>
 #include <numeric>
+#include <fstream>
 using namespace std;
 typedef long long int ll;
 typedef pair<ll, ll> P;
@@ -22,54 +23,67 @@ typedef pair<ll, ll> P;
 #define INF (1e9)
 #define PI (acos(-1))
 
-#define REP(i, n) for(int i = 0; i < (int)(n); i++)
+#define REP(i, n) for(ll i = 0; i < (ll)(n); i++)
 
-P bino(vector<ll> array, ll s, ll e){
+vector<ll> array2;
 
+P bino(ll s, ll e){
   ll a = s;
   ll b = e;
-  if (e - s == 1) return P(s, e);
+  ll base = s == 0 ? 0 : array2[s-1];
+  if (e - s == 1) {
+    return P(array2[s] - base, array2[e] - array2[s]);
+  }
   while(b - a > 1){
     ll i = (a + b) / 2;
-    ll tmp = array[e] - 2 * array[i];
+    ll tmp = array2[e] - 2 * array2[i] + base;
     if (tmp >= 0){
       a = i;
     }else{
       b = i;
     }
   }
-  if (abs(array[e] - 2 * array[a]) < abs(array[e] - 2 * array[b])){
-    return P(array[a], array[e] - array[a]);
+
+  if (abs(array2[e] - 2 * array2[a] + base) < abs(array2[e] - 2 * array2[b] + base)){
+    return P(array2[a] - base, array2[e] - array2[a]);
   }else{
-    return P(array[b], array[e] - array[b]);
+    return P(array2[b] - base, array2[e] - array2[b]);
   }
 }
 
 int main() {
+  //std::ifstream in("input.txt");
+  //std::cin.rdbuf(in.rdbuf());
 
   ll n;
   cin >> n;
-  vector<ll> array(n), summ(n);
+  vector<ll> array1(n);
+  array2.resize(n);
   REP(i, n) {
-    cin >> array[i];
-    if (i != 0) summ[i] = summ[i-1] + array[i];
-    else summ[i] = array[i];
+    cin >> array1[i];
+    if (i != 0) array2[i] = array2[i-1] + array1[i];
+    else array2[i] = array1[i];
   }
 
   ll j = 0;
   ll l = 2;
   ll ans = 1e9 + 5;
   vector<ll> tmp(4);
-  for(ll i = 1; i < n - 1; i++) {
+  for(ll i = 1; i < n - 2; i++) {
 
-    P p = bino(summ, 0, i);
-    P q = bino(summ, i+1, n-1);
+    P p = bino(0, i);
+    P q = bino(i+1, n-1);
+    //if (i > 1e4)cout << i << endl;
+    /*
     tmp[0] = p.first;
     tmp[1] = p.second;
     tmp[2] = q.first;
     tmp[3] = q.second;
-    sort(tmp.begin(), tmp.end());
-    ans = min(ans, tmp[3] - tmp[1]);
+    */
+    ll big = max(max(p.first, p.second), max(q.first, q.second));
+    ll small = min(min(p.first, p.second), min(q.first, q.second));
+    //sort(tmp.begin(), tmp.end());
+    ans = min(ans, big - small);
 
   }
   cout << ans << endl;
